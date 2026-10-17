@@ -1,0 +1,18 @@
+# Java
+backend/target/
+*.class
+*.log
+
+# Node
+frontend/node_modules/
+frontend/dist/
+frontend/.env
+backend/.env
+
+# Secrets and local data
+.env
+.env.*
+!.env.example
+.DS_Store
+.idea/
+.vscode/

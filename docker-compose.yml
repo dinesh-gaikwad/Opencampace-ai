@@ -1,0 +1,35 @@
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: opencampus
+      POSTGRES_USER: opencampus
+      POSTGRES_PASSWORD: opencampus_local_only
+    ports:
+      - "5432:5432"
+    volumes:
+      - opencampus_db:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U opencampus -d opencampus"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  backend:
+    build: ./backend
+    environment:
+      DB_HOST: db
+      DB_PORT: 5432
+      DB_NAME: opencampus
+      DB_USER: opencampus
+      DB_PASSWORD: opencampus_local_only
+      CORS_ALLOWED_ORIGINS: http://localhost:5173
+      PORT: 8080
+    ports:
+      - "8080:8080"
+    depends_on:
+      db:
+        condition: service_healthy
+
+volumes:
+  opencampus_db:

@@ -1,0 +1,10 @@
+{
+  "name": "OpenCampus AI",
+  "short_name": "OpenCampus",
+  "description": "Learn, practise, and grow with a personal AI study companion.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f6f8f7",
+  "theme_color": "#0b6e55",
+  "icons": []
+}
